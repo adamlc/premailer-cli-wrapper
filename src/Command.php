@@ -9,16 +9,10 @@ use AdamBrett\ShellWrapper\Runners\Exec;
 class Command
 {
     /**
-     * @var AdamBrett\ShellWrapper\Command\Builder
+     * @var string
      * @access private
      */
     private $command;
-
-    /**
-     * @var AdamBrett\ShellWrapper\Runners\Exec
-     * @access private
-     */
-    private $shell;
 
     const HTML = 'html';
     const TEXT = 'txt';
@@ -30,9 +24,7 @@ class Command
      */
     public function __construct($premailerCmd)
     {
-        $this->command = new CommandBuilder($premailerCmd);
-
-        $this->shell = new Exec();
+        $this->command = $premailerCmd;
     }
 
     /**
@@ -45,20 +37,23 @@ class Command
      */
     public function getOutput($type, $body)
     {
+        $command = new CommandBuilder($this->command);
+
         //Set output type to $type
-        $this->command->addArgument(
+        $command->addArgument(
             'mode',
             $type
         );
 
         //Create a tmp file for input
-        $this->command->addParam(
+        $command->addParam(
             $this->getTmpFile($body)
         );
 
-        $this->shell->run($this->command);
+        $shell = new Exec();
+        $shell->run($command);
 
-        return implode("\n", $this->shell->getOutput());
+        return implode("\n", $shell->getOutput());
     }
 
     /**
