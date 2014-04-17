@@ -1,0 +1,21 @@
+{
+    "name": "adamlc/premailer-cli-wrapper",
+    "description": "PHP CLI wrapper for Premailer (https://github.com/premailer/premailer)",
+    "require": {
+        "php": ">=5.3.3",
+        "adambrett/shell-wrapper": "0.3.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adam Curtis",
+            "email": "me@alc.im"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload" : {
+        "psr-4" : {
+            "Adamlc\\Premailer\\": "src"
+        }
+    }
+}
