@@ -44,6 +44,10 @@ class Command
             'mode',
             $type
         );
+        
+        $command->addArgument(
+            'with_html_string'
+        );
 
         //Create a tmp file for input
         $command->addParam(
