@@ -2,8 +2,8 @@
     "name": "adamlc/premailer-cli-wrapper",
     "description": "PHP CLI wrapper for Premailer (https://github.com/premailer/premailer)",
     "require": {
-        "php": ">=5.4.0",
-        "adambrett/shell-wrapper": "0.3.*"
+        "php": ">=5.3.3",
+        "adambrett/shell-wrapper": "0.5.*"
     },
     "license": "MIT",
     "authors": [
