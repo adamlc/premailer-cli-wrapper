@@ -15,7 +15,7 @@ sudo gem install premailer
 To install AddressFormat as a Composer package add this to your composer.json:
 
 ```json
-"adamlc/premailer-cli-wrapper": "dev-master"
+"adamlc/premailer-cli-wrapper": "0.0.*"
 ```
 
 Run `composer update`
