@@ -33,11 +33,12 @@ class Command
      * @access public
      * @param string $type - Either Command::HTML or Command::TEXT
      * @param mixed $body
-     * @return void
+     * @return string
      */
     public function getOutput($type, $body)
     {
         $command = new CommandBuilder($this->command);
+        $tempFileName = $this->getTmpFile($body);
 
         //Set output type to $type
         $command->addArgument(
@@ -45,13 +46,12 @@ class Command
             $type
         );
 
-        //Create a tmp file for input
-        $command->addParam(
-            $this->getTmpFile($body)
-        );
+        //Add temporary file as parameter
+        $command->addParam($tempFileName);
 
         $shell = new Exec();
         $shell->run($command);
+        unlink($tempFileName);
 
         return implode("\n", $shell->getOutput());
     }
