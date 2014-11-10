@@ -51,7 +51,14 @@ class Command
 
         $shell = new Exec();
         $shell->run($command);
-        unlink($tempFileName);
+
+        if (file_exists($tempFileName)) {
+            unlink($tempFileName);
+        }
+        
+        if ($shell->getReturnValue() > 0) {
+            throw new \Exception(__METHOD__ . ': command exited with return value > 0');
+        }
 
         return implode("\n", $shell->getOutput());
     }
